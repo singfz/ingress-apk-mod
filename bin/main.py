@@ -220,6 +220,25 @@ def main():
     edit.add_invoke_entry('ShaderUtils_compileShader', 'p0, p1, p2', shaderReg)
     edit.save()
 
+    edit = edit_cls('CommsAdapter')
+    edit.prepare_after_prologue('bindView')
+    edit.find_line(r' iget-object v3, p0, %s->l:%s' % (expr('$CommsAdapter'), expr('$SimpleDateFormat')))
+    edit.comment_line()
+    edit.add_invoke_entry('CommsAdapter_getDateFormat', '', 'v3')
+    edit.save()
+
+    #remove recycle animation
+    edit = edit_cls('ItemActionHandler')
+    edit.find_method_def('recycle')
+    edit.find_line(' \.locals 4', where='down')
+    edit.replace_in_line('4', '5')
+    edit.find_line(' const-wide/16 v2, 0x4b0', where='down')
+    edit.prepare_to_insert()
+    edit.add_invoke_entry('ItemActionHandler_recycleAnimationsEnabled', ret='v4')
+    edit.add_line(' if-nez v4, :lbl_recycle_delay');
+    edit.add_line(' const-wide/16 v2, 0x0')
+    edit.add_line(' :lbl_recycle_delay')
+    edit.save()
 
 if __name__ == '__main__':
     main()
