@@ -2,15 +2,15 @@ version: 1.0.0-sdiz
 
 signing:
   debug:
-    store: $MOD_HOME/res/ingress-mod.keystore
-    pass: qwerty
-    alias: ingress_mod
+    store: $MOD_HOME/res/my-release-key.keystore
+    pass: 123456
+    alias: alias_name
 
   release:
-    store: $MOD_HOME/res/ingress-mod.keystore
-    pass: qwerty
-    alias: ingress_mod
+    store: $MOD_HOME/res/my-release-key.keystore
+    pass: 123456
+    alias: alias_name
 
 maps_key:
-  debug: AIzaSyDnBplgAJZudNKNy7n2xwfvcHnrZuVVGsk
-  release: AIzaSyDnBplgAJZudNKNy7n2xwfvcHnrZuVVGsk
+  debug: AIzaSyAfkzgbeulesz-SSnWNsVvqEty6wdOCNPk
+  release: AIzaSyAfkzgbeulesz-SSnWNsVvqEty6wdOCNPk
